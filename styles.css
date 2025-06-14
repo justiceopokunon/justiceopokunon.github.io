@@ -222,3 +222,40 @@ footer p {
         flex-direction: column;
     }
 }
+
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: center; /* Center horizontally */
+    margin-top: 24px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s, transform 0.2s;
+    padding: 8px 14px;
+    border-radius: 6px;
+}
+
+.social-links a:hover, .social-links a:focus {
+    color: #2575fc;
+    background: #fff;
+    transform: translateY(-2px) scale(1.05);
+    text-decoration: none;
+}
+
+.social-links svg {
+    transition: color 0.2s, fill 0.2s;
+}
+
+.social-links a:hover svg, .social-links a:focus svg {
+    color: #2575fc;
+    fill: #2575fc;
+}

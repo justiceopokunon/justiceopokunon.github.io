@@ -13,7 +13,8 @@
         typingDelay: 2000,
         particleCount: 50,
         scrollThreshold: 100,
-        animationDelay: 200
+        animationDelay: 200,
+        contactEmail: 'justiceopokunon@gmail.com'
     };
     
     // ==============================================
@@ -304,7 +305,7 @@
                 await new Promise(resolve => setTimeout(resolve, 1500));
                 
                 // For demo purposes, create a mailto link
-                const mailtoLink = `mailto:justiceopokunon@gmail.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`)}`;
+                const mailtoLink = `mailto:${config.contactEmail}?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`)}`;
                 window.location.href = mailtoLink;
                 
                 // Show success message
@@ -413,10 +414,30 @@
         function activateEasterEgg() {
             // Add fun effect
             document.body.style.animation = 'rainbow 2s linear';
+            
+            // Create a custom toast notification
+            const toast = document.createElement('div');
+            toast.textContent = '🎉 You found the secret! Thanks for exploring!';
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 0.5rem;
+                box-shadow: var(--shadow-lg);
+                z-index: 10000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            
+            document.body.appendChild(toast);
+            
             setTimeout(() => {
                 document.body.style.animation = '';
-                alert('🎉 You found the secret! Thanks for exploring!');
-            }, 2000);
+                toast.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
         }
     }
     

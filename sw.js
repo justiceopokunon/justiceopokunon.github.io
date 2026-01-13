@@ -168,8 +168,9 @@ async function cacheFirst(request) {
     
     // Return offline fallback for navigation requests
     if (request.mode === 'navigate') {
-      const cache = await caches.match('/index.html');
-      if (cache) return cache;
+      const cache = await caches.open(CACHE_NAME);
+      const cachedIndex = await cache.match('/index.html');
+      if (cachedIndex) return cachedIndex;
     }
     
     // Return a custom offline response

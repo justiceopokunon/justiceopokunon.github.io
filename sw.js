@@ -122,10 +122,10 @@ self.addEventListener('fetch', (event) => {
   // Cache-first strategy for static assets
   if (
     url.origin === location.origin || // Same origin
-    url.hostname.includes('fonts.googleapis.com') ||
-    url.hostname.includes('fonts.gstatic.com') ||
-    url.hostname.includes('cdnjs.cloudflare.com') ||
-    url.hostname.includes('images.unsplash.com')
+    url.hostname === 'fonts.googleapis.com' ||
+    url.hostname === 'fonts.gstatic.com' ||
+    url.hostname === 'cdnjs.cloudflare.com' ||
+    url.hostname === 'images.unsplash.com'
   ) {
     event.respondWith(cacheFirst(request));
   }

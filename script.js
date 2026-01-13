@@ -287,6 +287,14 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
+            // Check if online
+            if (!navigator.onLine) {
+                formStatus.textContent = '📡 You are offline. Please check your internet connection and try again.';
+                formStatus.className = 'form-status error';
+                formStatus.style.display = 'block';
+                return;
+            }
+            
             // Clear previous errors
             const errorMessages = form.querySelectorAll('.error-message');
             errorMessages.forEach(msg => msg.textContent = '');
@@ -340,7 +348,22 @@
                 await new Promise(resolve => setTimeout(resolve, 1500));
                 
                 // For demo purposes, create a mailto link
-                const mailtoLink = `mailto:${config.contactEmail}?subject=${encodeURIComponent(sanitizedData.subject)}&body=${encodeURIComponent(`Name: ${sanitizedData.name}\nEmail: ${sanitizedData.email}\n\nMessage:\n${sanitizedData.message}`)}`;
+                // Add website identifier to subject and body
+                const emailSubject = `[Portfolio Website] ${sanitizedData.subject}`;
+                const emailBody = `=== Contact Form Submission ===
+Submitted from: Portfolio Website (justiceopokunon.github.io)
+Date: ${new Date().toLocaleString()}
+
+Name: ${sanitizedData.name}
+Email: ${sanitizedData.email}
+
+Message:
+${sanitizedData.message}
+
+---
+This message was sent via the contact form on your portfolio website.`;
+                
+                const mailtoLink = `mailto:${config.contactEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
                 window.location.href = mailtoLink;
                 
                 // Show success message
@@ -367,6 +390,7 @@
                 // Show error message
                 formStatus.textContent = 'Oops! Something went wrong. Please try again.';
                 formStatus.className = 'form-status error';
+                formStatus.style.display = 'block';
                 
                 // Reset button
                 const submitBtn = form.querySelector('button[type="submit"]');
@@ -588,15 +612,3 @@
     init();
     
 })();
-
-// ==============================================
-// Service Worker Registration (for PWA support)
-// ==============================================
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        // Uncomment to enable service worker
-        // navigator.serviceWorker.register('/sw.js')
-        //     .then(registration => console.log('SW registered:', registration))
-        //     .catch(error => console.log('SW registration failed:', error));
-    });
-}

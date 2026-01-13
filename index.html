@@ -614,5 +614,61 @@
     
     <!-- JavaScript -->
     <script src="script.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        // Register Service Worker for PWA and offline functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('✅ Service Worker registered successfully:', registration.scope);
+                        
+                        // Check for updates when page gains focus
+                        document.addEventListener('visibilitychange', () => {
+                            if (document.visibilityState === 'visible') {
+                                registration.update();
+                            }
+                        });
+                        
+                        // Listen for updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // New service worker available, show update prompt
+                                    console.log('🔄 New version available! Reload to update.');
+                                }
+                            });
+                        });
+                    })
+                    .catch((error) => {
+                        console.warn('❌ Service Worker registration failed:', error);
+                    });
+            });
+            
+            // Listen for online/offline events
+            window.addEventListener('online', () => {
+                console.log('🌐 Back online!');
+                const statusMessage = document.querySelector('.form-status');
+                if (statusMessage) {
+                    statusMessage.textContent = '🌐 Connection restored! You are back online.';
+                    statusMessage.className = 'form-status success';
+                    setTimeout(() => {
+                        statusMessage.className = 'form-status';
+                    }, 3000);
+                }
+            });
+            
+            window.addEventListener('offline', () => {
+                console.log('📡 You are offline. The app will continue to work with cached content.');
+                const statusMessage = document.querySelector('.form-status');
+                if (statusMessage) {
+                    statusMessage.textContent = '📡 You are offline. Some features may be limited.';
+                    statusMessage.className = 'form-status error';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

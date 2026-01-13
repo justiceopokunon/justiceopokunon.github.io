@@ -287,6 +287,14 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
+            // Check if online
+            if (!navigator.onLine) {
+                formStatus.textContent = '📡 You are offline. Please check your internet connection and try again.';
+                formStatus.className = 'form-status error';
+                formStatus.style.display = 'block';
+                return;
+            }
+            
             // Clear previous errors
             const errorMessages = form.querySelectorAll('.error-message');
             errorMessages.forEach(msg => msg.textContent = '');
@@ -367,6 +375,7 @@
                 // Show error message
                 formStatus.textContent = 'Oops! Something went wrong. Please try again.';
                 formStatus.className = 'form-status error';
+                formStatus.style.display = 'block';
                 
                 // Reset button
                 const submitBtn = form.querySelector('button[type="submit"]');
@@ -588,15 +597,3 @@
     init();
     
 })();
-
-// ==============================================
-// Service Worker Registration (for PWA support)
-// ==============================================
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        // Uncomment to enable service worker
-        // navigator.serviceWorker.register('/sw.js')
-        //     .then(registration => console.log('SW registered:', registration))
-        //     .catch(error => console.log('SW registration failed:', error));
-    });
-}

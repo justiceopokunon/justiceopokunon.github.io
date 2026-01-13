@@ -1,0 +1,20 @@
+{
+  "name": "Justice Opoku Nontwiri Portfolio",
+  "short_name": "Justice Portfolio",
+  "description": "Full-Stack Developer, AI Enthusiast, and Creative Technologist",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "FBX_7410.JPG",
+      "sizes": "800x1120",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "technology", "development"],
+  "screenshots": []
+}

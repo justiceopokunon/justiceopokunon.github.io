@@ -1,4 +1,124 @@
 /* ==============================================
+   Icon Fallbacks (when Font Awesome fails to load)
+   ============================================== */
+.fa, .fas, .fab, .far {
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Moon icon fallback */
+.fa-moon::before {
+    content: '🌙';
+    font-family: var(--font-primary);
+}
+
+/* Sun icon fallback */
+.fa-sun::before {
+    content: '☀️';
+    font-family: var(--font-primary);
+}
+
+/* Arrow up fallback */
+.fa-arrow-up::before {
+    content: '↑';
+    font-family: var(--font-primary);
+}
+
+/* Paper plane fallback */
+.fa-paper-plane::before {
+    content: '✉️';
+    font-family: var(--font-primary);
+}
+
+/* Social icons fallbacks */
+.fa-envelope::before {
+    content: '✉';
+    font-family: var(--font-primary);
+}
+
+.fa-github::before {
+    content: '⚙';
+    font-family: var(--font-primary);
+}
+
+.fa-linkedin-in::before {
+    content: '💼';
+    font-family: var(--font-primary);
+}
+
+.fa-twitter::before {
+    content: '🐦';
+    font-family: var(--font-primary);
+}
+
+.fa-instagram::before {
+    content: '📷';
+    font-family: var(--font-primary);
+}
+
+.fa-whatsapp::before {
+    content: '💬';
+    font-family: var(--font-primary);
+}
+
+.fa-telegram-plane::before {
+    content: '✈';
+    font-family: var(--font-primary);
+}
+
+.fa-tiktok::before {
+    content: '🎵';
+    font-family: var(--font-primary);
+}
+
+.fa-medium-m::before {
+    content: 'Ⓜ';
+    font-family: var(--font-primary);
+}
+
+.fa-microphone-alt::before {
+    content: '🎤';
+    font-family: var(--font-primary);
+}
+
+.fa-snapchat-ghost::before {
+    content: '👻';
+    font-family: var(--font-primary);
+}
+
+.fa-external-link-alt::before {
+    content: '↗';
+    font-family: var(--font-primary);
+}
+
+.fa-code::before {
+    content: '💻';
+    font-family: var(--font-primary);
+}
+
+.fa-laptop-code::before {
+    content: '💻';
+    font-family: var(--font-primary);
+}
+
+.fa-brain::before {
+    content: '🧠';
+    font-family: var(--font-primary);
+}
+
+.fa-tools::before {
+    content: '🔧';
+    font-family: var(--font-primary);
+}
+
+.fa-spinner::before {
+    content: '⌛';
+    font-family: var(--font-primary);
+}
+
+/* ==============================================
    CSS Variables & Theme Configuration
    ============================================== */
 :root {
@@ -19,8 +139,8 @@
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
     
     /* Typography */
-    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-heading: 'Space Grotesk', var(--font-primary);
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    --font-heading: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     
     /* Spacing */
     --spacing-xs: 0.5rem;
@@ -1044,6 +1164,16 @@ a {
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
+.form-group input.error,
+.form-group textarea.error {
+    border-color: var(--accent-color);
+}
+
+.form-group input.error:focus,
+.form-group textarea.error:focus {
+    box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+}
+
 .form-group textarea {
     resize: vertical;
     min-height: 120px;
@@ -1054,6 +1184,12 @@ a {
     color: var(--accent-color);
     font-size: 0.875rem;
     margin-top: var(--spacing-xs);
+    min-height: 1.25rem;
+    transition: opacity var(--transition-base);
+}
+
+.error-message:empty {
+    opacity: 0;
 }
 
 .form-status {
@@ -1061,19 +1197,27 @@ a {
     padding: var(--spacing-sm);
     border-radius: var(--radius-md);
     text-align: center;
-    display: none;
+    font-weight: 500;
+    transition: all var(--transition-base);
 }
 
 .form-status.success {
     display: block;
     background: #d1fae5;
     color: #065f46;
+    opacity: 1;
 }
 
 .form-status.error {
     display: block;
     background: #fee2e2;
     color: #991b1b;
+    opacity: 1;
+}
+
+.form-status:not(.success):not(.error) {
+    display: none;
+    opacity: 0;
 }
 
 .social-section {

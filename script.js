@@ -18,6 +18,31 @@
     };
     
     // ==============================================
+    // Utility Functions
+    // ==============================================
+    
+    /**
+     * Sanitize HTML input to prevent XSS attacks
+     * @param {string} input - The input string to sanitize
+     * @returns {string} - Sanitized string
+     */
+    function sanitizeInput(input) {
+        const div = document.createElement('div');
+        div.textContent = input;
+        return div.innerHTML;
+    }
+    
+    /**
+     * Validate email format
+     * @param {string} email - Email address to validate
+     * @returns {boolean} - Whether email is valid
+     */
+    function isValidEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+    
+    // ==============================================
     // Typing Animation
     // ==============================================
     const typingTexts = [
@@ -146,8 +171,9 @@
         // Mobile menu toggle
         if (hamburger && navMenu) {
             hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
+                const isActive = hamburger.classList.toggle('active');
                 navMenu.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded', isActive);
             });
             
             // Close menu when clicking outside
@@ -155,6 +181,7 @@
                 if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
                     hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
                 }
             });
         }
@@ -268,25 +295,33 @@
             const formData = new FormData(form);
             const data = Object.fromEntries(formData);
             
+            // Sanitize all inputs to prevent XSS
+            const sanitizedData = {
+                name: sanitizeInput(data.name || ''),
+                email: sanitizeInput(data.email || ''),
+                subject: sanitizeInput(data.subject || ''),
+                message: sanitizeInput(data.message || '')
+            };
+            
             // Validate
             let isValid = true;
             
-            if (!data.name || data.name.trim().length < 2) {
-                showError('name', 'Please enter a valid name');
+            if (!sanitizedData.name || sanitizedData.name.trim().length < 2) {
+                showError('name', 'Please enter a valid name (at least 2 characters)');
                 isValid = false;
             }
             
-            if (!data.email || !isValidEmail(data.email)) {
+            if (!sanitizedData.email || !isValidEmail(sanitizedData.email)) {
                 showError('email', 'Please enter a valid email address');
                 isValid = false;
             }
             
-            if (!data.subject || data.subject.trim().length < 3) {
-                showError('subject', 'Subject is too short');
+            if (!sanitizedData.subject || sanitizedData.subject.trim().length < 3) {
+                showError('subject', 'Subject must be at least 3 characters');
                 isValid = false;
             }
             
-            if (!data.message || data.message.trim().length < 10) {
+            if (!sanitizedData.message || sanitizedData.message.trim().length < 10) {
                 showError('message', 'Message must be at least 10 characters');
                 isValid = false;
             }
@@ -305,12 +340,13 @@
                 await new Promise(resolve => setTimeout(resolve, 1500));
                 
                 // For demo purposes, create a mailto link
-                const mailtoLink = `mailto:${config.contactEmail}?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`)}`;
+                const mailtoLink = `mailto:${config.contactEmail}?subject=${encodeURIComponent(sanitizedData.subject)}&body=${encodeURIComponent(`Name: ${sanitizedData.name}\nEmail: ${sanitizedData.email}\n\nMessage:\n${sanitizedData.message}`)}`;
                 window.location.href = mailtoLink;
                 
                 // Show success message
                 formStatus.textContent = 'Message sent successfully! I\'ll get back to you soon.';
                 formStatus.className = 'form-status success';
+                formStatus.style.display = 'block';
                 form.reset();
                 
                 // Reset button
@@ -319,7 +355,12 @@
                 
                 // Hide success message after 5 seconds
                 setTimeout(() => {
-                    formStatus.style.display = 'none';
+                    formStatus.style.opacity = '0';
+                    setTimeout(() => {
+                        formStatus.className = 'form-status';
+                        formStatus.style.display = 'none';
+                        formStatus.style.opacity = '1';
+                    }, 300);
                 }, 5000);
                 
             } catch (error) {
@@ -336,15 +377,11 @@
         
         function showError(fieldName, message) {
             const field = form.querySelector(`[name="${fieldName}"]`);
-            const errorElement = field.parentElement.querySelector('.error-message');
+            const errorElement = field?.parentElement?.querySelector('.error-message');
             if (errorElement) {
                 errorElement.textContent = message;
             }
-            field.classList.add('error');
-        }
-        
-        function isValidEmail(email) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            field?.classList.add('error');
         }
     }
     
@@ -355,13 +392,32 @@
         const loadingScreen = document.getElementById('loadingScreen');
         if (!loadingScreen) return;
         
-        setTimeout(() => {
-            loadingScreen.classList.add('hidden');
-            // Remove from DOM after transition
+        // Ensure minimum loading time for UX
+        const minLoadTime = 800;
+        const startTime = performance.now();
+        
+        window.addEventListener('load', () => {
+            const elapsed = performance.now() - startTime;
+            const remainingTime = Math.max(0, minLoadTime - elapsed);
+            
             setTimeout(() => {
-                loadingScreen.remove();
-            }, 500);
-        }, 1000);
+                loadingScreen.classList.add('hidden');
+                // Remove from DOM after transition
+                setTimeout(() => {
+                    loadingScreen.remove();
+                }, 500);
+            }, remainingTime);
+        });
+        
+        // Fallback: Force hide after 3 seconds regardless
+        setTimeout(() => {
+            if (loadingScreen.parentNode) {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.remove();
+                }, 500);
+            }
+        }, 3000);
     }
     
     // ==============================================

@@ -348,7 +348,22 @@
                 await new Promise(resolve => setTimeout(resolve, 1500));
                 
                 // For demo purposes, create a mailto link
-                const mailtoLink = `mailto:${config.contactEmail}?subject=${encodeURIComponent(sanitizedData.subject)}&body=${encodeURIComponent(`Name: ${sanitizedData.name}\nEmail: ${sanitizedData.email}\n\nMessage:\n${sanitizedData.message}`)}`;
+                // Add website identifier to subject and body
+                const emailSubject = `[Portfolio Website] ${sanitizedData.subject}`;
+                const emailBody = `=== Contact Form Submission ===
+Submitted from: Portfolio Website (justiceopokunon.github.io)
+Date: ${new Date().toLocaleString()}
+
+Name: ${sanitizedData.name}
+Email: ${sanitizedData.email}
+
+Message:
+${sanitizedData.message}
+
+---
+This message was sent via the contact form on your portfolio website.`;
+                
+                const mailtoLink = `mailto:${config.contactEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
                 window.location.href = mailtoLink;
                 
                 // Show success message

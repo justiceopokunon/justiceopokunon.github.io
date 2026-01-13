@@ -1,124 +1,4 @@
 /* ==============================================
-   Icon Fallbacks (when Font Awesome fails to load)
-   ============================================== */
-.fa, .fas, .fab, .far {
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-}
-
-/* Moon icon fallback */
-.fa-moon::before {
-    content: '🌙';
-    font-family: var(--font-primary);
-}
-
-/* Sun icon fallback */
-.fa-sun::before {
-    content: '☀️';
-    font-family: var(--font-primary);
-}
-
-/* Arrow up fallback */
-.fa-arrow-up::before {
-    content: '↑';
-    font-family: var(--font-primary);
-}
-
-/* Paper plane fallback */
-.fa-paper-plane::before {
-    content: '✉️';
-    font-family: var(--font-primary);
-}
-
-/* Social icons fallbacks */
-.fa-envelope::before {
-    content: '✉';
-    font-family: var(--font-primary);
-}
-
-.fa-github::before {
-    content: '⚙';
-    font-family: var(--font-primary);
-}
-
-.fa-linkedin-in::before {
-    content: '💼';
-    font-family: var(--font-primary);
-}
-
-.fa-twitter::before {
-    content: '🐦';
-    font-family: var(--font-primary);
-}
-
-.fa-instagram::before {
-    content: '📷';
-    font-family: var(--font-primary);
-}
-
-.fa-whatsapp::before {
-    content: '💬';
-    font-family: var(--font-primary);
-}
-
-.fa-telegram-plane::before {
-    content: '✈';
-    font-family: var(--font-primary);
-}
-
-.fa-tiktok::before {
-    content: '🎵';
-    font-family: var(--font-primary);
-}
-
-.fa-medium-m::before {
-    content: 'Ⓜ';
-    font-family: var(--font-primary);
-}
-
-.fa-microphone-alt::before {
-    content: '🎤';
-    font-family: var(--font-primary);
-}
-
-.fa-snapchat-ghost::before {
-    content: '👻';
-    font-family: var(--font-primary);
-}
-
-.fa-external-link-alt::before {
-    content: '↗';
-    font-family: var(--font-primary);
-}
-
-.fa-code::before {
-    content: '💻';
-    font-family: var(--font-primary);
-}
-
-.fa-laptop-code::before {
-    content: '💻';
-    font-family: var(--font-primary);
-}
-
-.fa-brain::before {
-    content: '🧠';
-    font-family: var(--font-primary);
-}
-
-.fa-tools::before {
-    content: '🔧';
-    font-family: var(--font-primary);
-}
-
-.fa-spinner::before {
-    content: '⌛';
-    font-family: var(--font-primary);
-}
-
-/* ==============================================
    CSS Variables & Theme Configuration
    ============================================== */
 :root {
@@ -177,6 +57,37 @@
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* ==============================================
+   SVG Icon Styles
+   ============================================== */
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    transition: all var(--transition-base);
+}
+
+.icon-lg {
+    width: 1.25em;
+    height: 1.25em;
+}
+
+.icon-xl {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.icon-spin {
+    animation: icon-spin 1s linear infinite;
+}
+
+@keyframes icon-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 /* ==============================================
@@ -303,21 +214,21 @@ a {
     box-shadow: var(--shadow-lg);
 }
 
-.theme-toggle i {
+.theme-toggle .icon {
     font-size: 1.25rem;
     color: var(--text-primary);
     transition: all var(--transition-base);
 }
 
-.theme-toggle .fa-sun {
+.theme-toggle .icon-sun {
     display: none;
 }
 
-[data-theme="dark"] .theme-toggle .fa-moon {
+[data-theme="dark"] .theme-toggle .icon-moon {
     display: none;
 }
 
-[data-theme="dark"] .theme-toggle .fa-sun {
+[data-theme="dark"] .theme-toggle .icon-sun {
     display: block;
 }
 
@@ -354,7 +265,7 @@ a {
     box-shadow: var(--shadow-xl);
 }
 
-.scroll-to-top i {
+.scroll-to-top .icon {
     color: white;
     font-size: 1.25rem;
 }
@@ -841,7 +752,7 @@ a {
     gap: var(--spacing-sm);
 }
 
-.skill-category h3 i {
+.skill-category h3 .icon {
     color: var(--primary-color);
 }
 

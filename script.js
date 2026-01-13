@@ -341,7 +341,7 @@
                 // Show loading state
                 const submitBtn = form.querySelector('button[type="submit"]');
                 const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
+                submitBtn.innerHTML = '<span>Sending...</span><svg class="icon icon-spin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 4V2A10 10 0 002 12h2a8 8 0 018-8z"/></svg>';
                 submitBtn.disabled = true;
                 
                 // Simulate API call
@@ -394,7 +394,7 @@ This message was sent via the contact form on your portfolio website.`;
                 
                 // Reset button
                 const submitBtn = form.querySelector('button[type="submit"]');
-                submitBtn.innerHTML = '<span>Send Message</span><i class="fas fa-paper-plane"></i>';
+                submitBtn.innerHTML = '<span>Send Message</span><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>';
                 submitBtn.disabled = false;
             }
         });

@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- SEO Meta Tags -->
     <meta name="description" content="Justice Opoku Nontwiri - Full-Stack Developer, AI Enthusiast, and Creative Technologist. Building innovative solutions for African communities.">
     <meta name="keywords" content="full-stack developer, AI, machine learning, web development, portfolio, Justice Opoku Nontwiri">
     <meta name="author" content="Justice Opoku Nontwiri">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://justiceopokunon.github.io/">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
@@ -22,9 +32,54 @@
     <meta name="twitter:image" content="https://justiceopokunon.github.io/FBX_7410.JPG">
     
     <title>Justice Opoku Nontwiri | Full-Stack Developer & AI Enthusiast</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="preload" href="FBX_7410.JPG" as="image">
+    
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Fonts with fallback -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome with fallback -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiSnVzdGljZSBPcG9rdSBOb250d2lyaSBQb3J0Zm9saW8iLCJzaG9ydF9uYW1lIjoiSnVzdGljZSBQb3J0Zm9saW8iLCJpY29ucyI6W3sic3JjIjoiRkJYXzc0MTAuSlBHIiwic2l6ZXMiOiI1MTJ4NTEyIiwidHlwZSI6ImltYWdlL2pwZWcifV0sInRoZW1lX2NvbG9yIjoiIzYzNjZmMSIsImJhY2tncm91bmRfY29sb3IiOiIjZmZmZmZmIiwiZGlzcGxheSI6InN0YW5kYWxvbmUifQ==">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Justice Opoku Nontwiri",
+        "url": "https://justiceopokunon.github.io",
+        "image": "https://justiceopokunon.github.io/FBX_7410.JPG",
+        "sameAs": [
+            "https://github.com/justiceopokunon",
+            "https://www.linkedin.com/in/justiceopokunon",
+            "https://twitter.com/justiceopokunon",
+            "https://medium.com/@justiceopokunon"
+        ],
+        "jobTitle": "Full-Stack Developer",
+        "worksFor": {
+            "@type": "EducationalOrganization",
+            "name": "PRESEC-Legon"
+        },
+        "description": "Full-Stack Developer, AI Enthusiast, and Creative Technologist building innovative solutions for African communities.",
+        "knowsAbout": ["Python", "JavaScript", "Machine Learning", "Web Development", "AI", "IoT", "Robotics"],
+        "email": "justiceopokunon@gmail.com"
+    }
+    </script>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -46,25 +101,25 @@
         <i class="fas fa-arrow-up"></i>
     </button>
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
-            <div class="logo">
-                <span class="logo-bracket">&lt;</span>
+            <div class="logo" role="banner">
+                <span class="logo-bracket" aria-hidden="true">&lt;</span>
                 <span class="logo-name">Justice</span>
-                <span class="logo-bracket">/&gt;</span>
+                <span class="logo-bracket" aria-hidden="true">/&gt;</span>
             </div>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </button>
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                <li role="none"><a href="#home" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
+                <li role="none"><a href="#skills" class="nav-link" role="menuitem">Skills</a></li>
+                <li role="none"><a href="#experience" class="nav-link" role="menuitem">Experience</a></li>
+                <li role="none"><a href="#projects" class="nav-link" role="menuitem">Projects</a></li>
+                <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -135,7 +190,11 @@
                 </div>
                 <div class="about-image">
                     <div class="image-wrapper">
-                        <img src="FBX_7410.JPG" alt="Justice Opoku Nontwiri" loading="lazy">
+                        <img src="FBX_7410.JPG" 
+                             alt="Justice Opoku Nontwiri - Full-Stack Developer" 
+                             loading="lazy"
+                             width="400"
+                             height="400">
                         <div class="image-overlay"></div>
                     </div>
                 </div>
@@ -320,9 +379,13 @@
             <div class="projects-grid">
                 <div class="project-card featured" data-animate="fade-up">
                     <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=600&fit=crop" alt="CropGuard" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=600&fit=crop" 
+                             alt="CropGuard - AI-powered crop disease detection" 
+                             loading="lazy"
+                             width="800"
+                             height="600">
                         <div class="project-overlay">
-                            <a href="#" class="project-link" aria-label="View project"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="project-link" aria-label="View CropGuard project"><i class="fas fa-external-link-alt"></i></a>
                         </div>
                     </div>
                     <div class="project-content">
@@ -350,9 +413,13 @@
                 
                 <div class="project-card featured" data-animate="fade-up">
                     <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="J-Assist" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" 
+                             alt="J-Assist - AI personal assistant" 
+                             loading="lazy"
+                             width="800"
+                             height="600">
                         <div class="project-overlay">
-                            <a href="#" class="project-link" aria-label="View project"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="project-link" aria-label="View J-Assist project"><i class="fas fa-external-link-alt"></i></a>
                         </div>
                     </div>
                     <div class="project-content">
@@ -438,34 +505,58 @@
                     I'm currently open to new opportunities and collaborations. Whether you have a 
                     question, want to discuss a project, or just want to say hi, I'd love to hear from you!
                 </p>
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" novalidate>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="name">Name <span class="required">*</span></label>
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                            <span class="error-message"></span>
+                            <label for="name">Name <span class="required" aria-label="required">*</span></label>
+                            <input type="text" 
+                                   id="name" 
+                                   name="name" 
+                                   placeholder="Your Name" 
+                                   required
+                                   aria-required="true"
+                                   aria-describedby="name-error">
+                            <span class="error-message" id="name-error" role="alert"></span>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email <span class="required">*</span></label>
-                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
-                            <span class="error-message"></span>
+                            <label for="email">Email <span class="required" aria-label="required">*</span></label>
+                            <input type="email" 
+                                   id="email" 
+                                   name="email" 
+                                   placeholder="your.email@example.com" 
+                                   required
+                                   aria-required="true"
+                                   aria-describedby="email-error">
+                            <span class="error-message" id="email-error" role="alert"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="subject">Subject <span class="required">*</span></label>
-                        <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
-                        <span class="error-message"></span>
+                        <label for="subject">Subject <span class="required" aria-label="required">*</span></label>
+                        <input type="text" 
+                               id="subject" 
+                               name="subject" 
+                               placeholder="What's this about?" 
+                               required
+                               aria-required="true"
+                               aria-describedby="subject-error">
+                        <span class="error-message" id="subject-error" role="alert"></span>
                     </div>
                     <div class="form-group">
-                        <label for="message">Message <span class="required">*</span></label>
-                        <textarea id="message" name="message" placeholder="Your message..." rows="5" required></textarea>
-                        <span class="error-message"></span>
+                        <label for="message">Message <span class="required" aria-label="required">*</span></label>
+                        <textarea id="message" 
+                                  name="message" 
+                                  placeholder="Your message..." 
+                                  rows="5" 
+                                  required
+                                  aria-required="true"
+                                  aria-describedby="message-error"></textarea>
+                        <span class="error-message" id="message-error" role="alert"></span>
                     </div>
                     <button type="submit" class="btn btn-primary">
                         <span>Send Message</span>
-                        <i class="fas fa-paper-plane"></i>
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
                     </button>
-                    <div class="form-status"></div>
+                    <div class="form-status" role="status" aria-live="polite"></div>
                 </form>
                 
                 <!-- Social Links -->

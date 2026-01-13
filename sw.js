@@ -20,14 +20,6 @@ const EXTERNAL_RESOURCES = [
   // Google Fonts - Inter
   'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap',
   
-  // Font Awesome CSS
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
-  
-  // Font Awesome webfonts (most common formats)
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2',
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2',
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-regular-400.woff2',
-  
   // External images used in projects
   'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=600&fit=crop',
   'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop'
@@ -124,7 +116,6 @@ self.addEventListener('fetch', (event) => {
     url.origin === location.origin || // Same origin
     url.hostname === 'fonts.googleapis.com' ||
     url.hostname === 'fonts.gstatic.com' ||
-    url.hostname === 'cdnjs.cloudflare.com' ||
     url.hostname === 'images.unsplash.com'
   ) {
     event.respondWith(cacheFirst(request));

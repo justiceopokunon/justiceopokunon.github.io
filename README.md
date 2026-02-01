@@ -26,7 +26,7 @@ A cutting-edge portfolio website showcasing my journey as a Full-Stack Developer
   - Enhanced social media icons with scale effects
   - Scroll-to-top button
   - Form validation
-- **🌐 Social Integration**: Social media platforms including GitHub, LinkedIn, Twitter, Instagram, WhatsApp, Telegram, TikTok, YouTube, and Discord
+- **🌐 Social Integration**: 10+ social media platforms including GitHub, LinkedIn, Twitter, Instagram, WhatsApp, Telegram, TikTok, Medium, Vocal, and Snapchat
 
 ## 🛠️ Technologies Used
 

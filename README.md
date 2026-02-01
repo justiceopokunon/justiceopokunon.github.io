@@ -23,8 +23,10 @@ A cutting-edge portfolio website showcasing my journey as a Full-Stack Developer
   - Animated skill progress bars with smooth transitions
   - Particle background effects with GPU optimization
   - Smooth scroll navigation
+  - Enhanced social media icons with scale effects
   - Scroll-to-top button
   - Form validation
+- **🌐 Social Integration**: Social media platforms including GitHub, LinkedIn, Twitter, Instagram, WhatsApp, Telegram, TikTok, YouTube, and Discord
 
 ## 🛠️ Technologies Used
 
@@ -125,6 +127,13 @@ npx serve
 ## 📄 License
 
 © 2025 Justice Opoku Nontwiri. All rights reserved.
+
+## 🤝 Connect With Me
+
+- **Email**: [justiceopokunon@gmail.com](mailto:justiceopokunon@gmail.com)
+- **GitHub**: [@justiceopokunon](https://github.com/justiceopokunon)
+- **LinkedIn**: [justiceopokunon](https://www.linkedin.com/in/justiceopokunon)
+- **Twitter**: [@justiceopokunon](https://twitter.com/justiceopokunon)
 
 ---
 

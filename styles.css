@@ -383,13 +383,17 @@ a {
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 8px;
 }
 
 .hamburger span {
     width: 25px;
-    height: 2px;
+    height: 3px;
     background: var(--text-primary);
     transition: all var(--transition-base);
+    border-radius: 2px;
 }
 
 .hamburger.active span:nth-child(1) {

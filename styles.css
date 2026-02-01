@@ -430,6 +430,7 @@ a {
     height: 100%;
     overflow: hidden;
     z-index: 0;
+    will-change: transform;
 }
 
 .particle {
@@ -440,14 +441,20 @@ a {
     border-radius: 50%;
     opacity: 0.3;
     animation: float 20s infinite;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
 }
 
 @keyframes float {
     0%, 100% {
         transform: translateY(0) translateX(0);
+        opacity: 0.5;
     }
     50% {
         transform: translateY(-100px) translateX(100px);
+        opacity: 0.8;
     }
 }
 
@@ -658,7 +665,8 @@ a {
 [data-animate] {
     opacity: 0;
     transform: translateY(30px);
-    transition: all 0.6s ease-out;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: transform, opacity;
 }
 
 [data-animate].animated {
@@ -817,6 +825,8 @@ a {
     border-radius: 10px;
     width: 0;
     transition: width 1s ease-out;
+    will-change: width;
+    backface-visibility: hidden;
 }
 
 .skill-progress.animated {
@@ -1185,13 +1195,16 @@ a {
     color: var(--text-primary);
     font-size: 1.25rem;
     transition: all var(--transition-base);
+    will-change: transform, background, box-shadow, border-color, color;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .social-link:hover {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-color: transparent;
     color: white;
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.08);
     box-shadow: var(--shadow-lg);
 }
 

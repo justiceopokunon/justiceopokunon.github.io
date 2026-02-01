@@ -117,7 +117,7 @@
         // Check for saved theme preference or default to light mode
         const currentTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', currentTheme);
-        updateFavicon(currentTheme);
+        updateThemeColor(currentTheme);
         
         themeToggle.addEventListener('click', () => {
             const theme = document.documentElement.getAttribute('data-theme');
@@ -125,15 +125,15 @@
             
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-            updateFavicon(newTheme);
+            updateThemeColor(newTheme);
         });
     }
     
     /**
-     * Update favicon based on theme
+     * Update theme-color meta tag based on theme
      * @param {string} theme - 'light' or 'dark'
      */
-    function updateFavicon(theme) {
+    function updateThemeColor(theme) {
         // Update theme-color meta tag for better mobile experience
         const themeColorMeta = document.querySelector('meta[name="theme-color"]');
         if (themeColorMeta) {

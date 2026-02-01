@@ -1,4 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect width="100" height="100" rx="20" fill="#3b82f6"/>
-  <text x="50" y="65" font-family="Space Grotesk, Arial, sans-serif" font-size="45" font-weight="700" text-anchor="middle" fill="white">JO</text>
+  <style>
+    /* Light mode (default) */
+    rect { fill: #3b82f6; }
+    text { fill: white; }
+    
+    /* Dark mode - use lighter background for better visibility */
+    @media (prefers-color-scheme: dark) {
+      rect { fill: #60a5fa; }
+      text { fill: #0f172a; }
+    }
+  </style>
+  <rect width="100" height="100" rx="20"/>
+  <text x="50" y="65" font-family="Space Grotesk, Arial, sans-serif" font-size="45" font-weight="700" text-anchor="middle">JO</text>
 </svg>

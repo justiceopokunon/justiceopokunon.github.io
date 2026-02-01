@@ -408,6 +408,11 @@ a {
     transform: rotate(-45deg) translate(7px, -7px);
 }
 
+/* Ensure hamburger is visible in dark theme */
+[data-theme="dark"] .hamburger span {
+    background: var(--text-primary);
+}
+
 /* ==============================================
    Hero Section
    ============================================== */
